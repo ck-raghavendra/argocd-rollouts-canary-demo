@@ -31,9 +31,11 @@ spec:
             httpGet:
               path: /
               port: http
-strategy:
-  canary:
-    steps:
+              
+spec:
+  strategy:
+    canary:
+      steps:
       - setWeight: 20
       - pause: {}
       - setWeight: 40
