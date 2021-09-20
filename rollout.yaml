@@ -7,6 +7,18 @@ metadata:
     app: rollouts-demo
 spec:
   replicas: 5
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10}
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}
+      
   revisionHistoryLimit: 3
   selector:
     matchLabels:
@@ -32,15 +44,3 @@ spec:
               path: /
               port: http
               
-spec:
-  strategy:
-    canary:
-      steps:
-      - setWeight: 20
-      - pause: {}
-      - setWeight: 40
-      - pause: {duration: 10}
-      - setWeight: 60
-      - pause: {duration: 10}
-      - setWeight: 80
-      - pause: {duration: 10}
